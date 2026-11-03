@@ -1,0 +1,50 @@
+﻿@page "/"
+@inject TiendaApi Api
+
+<PageTitle>TecnoStore</PageTitle>
+
+<h1>TecnoStore</h1>
+
+@if (error is not null)
+{
+    <p class="error">@error</p>
+}
+else if (productos is null)
+{
+    <p>Cargando…</p>
+}
+else
+{
+    <p>@total productos en el catálogo</p>
+    <div class="grid">
+        @foreach (var p in productos)
+        {
+            <TarjetaProducto Producto="p" ImagenUrl="@ImagenDe(p.Id)" />
+        }
+    </div>
+}
+
+@code {
+    private List<ProductoDto>? productos;
+    private int total;
+    private readonly Dictionary<int, string> imagenes = new();
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            (productos, total) = await Api.GetProductosAsync(0, 12);
+
+            foreach (var i in await Api.GetImagenesAsync())
+                if (i.Producto is { } prod && !imagenes.ContainsKey(prod.Id))
+                    imagenes[prod.Id] = i.Url;
+        }
+        catch (HttpRequestException)
+        {
+            error = "No se pudo conectar con la API. ¿Está corriendo en http://localhost:9999?";
+        }
+    }
+
+    private string? ImagenDe(int productoId) => imagenes.TryGetValue(productoId, out var u) ? u : null;
+}

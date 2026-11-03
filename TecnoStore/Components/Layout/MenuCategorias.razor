@@ -1,0 +1,39 @@
+﻿@inject TiendaApi Api
+
+<nav class="barra-categorias">
+    <div class="contenedor barra-fila">
+        <span class="promo">¡Lo mejor en tecnología!</span>
+        @foreach (var c in categorias)
+        {
+            <a href="/categoria/@c.Slug">@Icono(c.Slug) @c.Nombre</a>
+        }
+    </div>
+</nav>
+
+@code {
+    private List<CategoriaDto> categorias = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            categorias = await Api.GetCategoriasAsync();
+        }
+        catch (HttpRequestException)
+        {
+            // Si la API está apagada, la barra queda vacía y la página sigue funcionando.
+        }
+    }
+
+    private static string Icono(string? slug) => slug switch
+    {
+        "audifonos" => "🎧",
+        "celulares" => "📱",
+        "tablets" => "📲",
+        "televisores" => "📺",
+        "laptops" => "💻",
+        "smartwatch" => "⌚",
+        "consolas" => "🎮",
+        _ => "📦"
+    };
+}

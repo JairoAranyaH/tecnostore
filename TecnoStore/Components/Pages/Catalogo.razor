@@ -1,0 +1,11 @@
+﻿@page "/catalogo"
+@page "/categoria/{Slug}"
+
+<PageTitle>Catálogo - TecnoStore</PageTitle>
+
+<h1>Catálogo</h1>
+<p class="muted">@(Slug is null ? "Todos los productos" : $"Categoría: {Slug}") — aquí irá el listado con filtros.</p>
+
+@code {
+    [Parameter] public string? Slug { get; set; }
+}

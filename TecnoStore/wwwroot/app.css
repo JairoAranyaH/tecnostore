@@ -1,0 +1,269 @@
+/* =========================================================
+   TecnoStore - estilos globales
+   Para cambiar la paleta, edita solo las variables de :root.
+   ========================================================= */
+:root {
+    --primario: #0057ff;
+    --primario-oscuro: #0041c4;
+    --oscuro: #0b1220;
+    --fondo: #f4f6fb;
+    --borde: #e2e6ef;
+    --texto: #1a2033;
+    --suave: #6b7488;
+    --ok: #0a8f3c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.45;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin: 1rem 0 .6rem;
+}
+
+    h1:focus {
+        outline: none;
+    }
+
+.contenedor {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.muted {
+    color: var(--suave);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    display: inline-block;
+    border: 0;
+    border-radius: 8px;
+    padding: .65rem 1.1rem;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: center;
+}
+
+.btn-primario {
+    background: var(--primario);
+    color: #fff;
+}
+
+    .btn-primario:hover {
+        background: var(--primario-oscuro);
+    }
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 1px 0 var(--borde);
+}
+
+.cabecera-fila {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.logo-marca {
+    color: var(--primario);
+}
+
+.buscador {
+    flex: 1;
+    display: flex;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+    .buscador input {
+        flex: 1;
+        border: 0;
+        padding: .65rem .9rem;
+        font-size: .95rem;
+        outline: none;
+    }
+
+    .buscador button {
+        border: 0;
+        background: #fff;
+        padding: 0 .9rem;
+        cursor: pointer;
+    }
+
+.enlace-cab {
+    white-space: nowrap;
+    font-size: .9rem;
+}
+
+    .enlace-cab:hover {
+        color: var(--primario);
+    }
+
+/* ---------- Barra de categorías ---------- */
+.barra-categorias {
+    background: var(--oscuro);
+    color: #fff;
+}
+
+.barra-fila {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    overflow-x: auto;
+}
+
+.promo {
+    background: var(--primario);
+    font-weight: 700;
+    padding: .8rem 1rem;
+    margin-left: -1rem;
+    white-space: nowrap;
+}
+
+.barra-fila a {
+    padding: .8rem .9rem;
+    font-size: .88rem;
+    white-space: nowrap;
+}
+
+    .barra-fila a:hover {
+        background: #1c2640;
+    }
+
+/* ---------- Pie ---------- */
+.pie {
+    background: var(--oscuro);
+    color: #cdd3e1;
+    margin-top: 3rem;
+    padding-top: 2rem;
+}
+
+.pie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+    .pie-grid strong {
+        display: block;
+        color: #fff;
+        margin-bottom: .5rem;
+    }
+
+    .pie-grid a, .pie-grid p {
+        display: block;
+        font-size: .88rem;
+        margin: .25rem 0;
+    }
+
+        .pie-grid a:hover {
+            color: #fff;
+        }
+
+.pie-copy {
+    text-align: center;
+    padding: 1.2rem;
+    font-size: .8rem;
+    border-top: 1px solid #1c2640;
+    margin-top: 1.5rem;
+}
+
+/* ---------- Errores de Blazor y validación de formularios ---------- */
+#blazor-error-ui {
+    background: #fff3cd;
+    bottom: 0;
+    display: none;
+    left: 0;
+    padding: .6rem 1.2rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    font-size: .9rem;
+}
+
+    #blazor-error-ui .reload {
+        margin-left: .6rem;
+        text-decoration: underline;
+    }
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: .75rem;
+        top: .5rem;
+    }
+
+.blazor-error-boundary {
+    background: #b32121;
+    padding: 1rem;
+    color: #fff;
+}
+
+    .blazor-error-boundary::after {
+        content: "Ocurrió un error.";
+    }
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid #e50000;
+}
+
+.validation-message {
+    color: #e50000;
+    font-size: .8rem;
+}
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 700px) {
+    .cabecera-fila {
+        flex-wrap: wrap;
+    }
+
+    .buscador {
+        order: 5;
+        flex-basis: 100%;
+    }
+
+    .pie-grid {
+        grid-template-columns: 1fr;
+    }
+}

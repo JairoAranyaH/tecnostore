@@ -1,0 +1,70 @@
+﻿.tarjeta {
+    position: relative;
+    border: 1px solid #e4e4ea;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.descuento {
+    position: absolute;
+    top: .6rem;
+    right: .6rem;
+    background: #e6f8ec;
+    color: #0a8f3c;
+    font-weight: 700;
+    font-size: .78rem;
+    padding: .15rem .45rem;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.foto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 190px;
+    padding: .75rem;
+    background: #fff;
+}
+
+    .foto img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.sin-foto {
+    font-size: 4rem;
+}
+
+.info {
+    padding: .8rem;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.marca {
+    color: #6c6c78;
+    text-transform: uppercase;
+    font-size: .72rem;
+}
+
+.nombre {
+    color: inherit;
+    text-decoration: none;
+    font-size: .92rem;
+}
+
+.precios strong {
+    font-size: 1.2rem;
+}
+
+.precios s {
+    color: #6c6c78;
+    margin-left: .4rem;
+    font-size: .85rem;
+}

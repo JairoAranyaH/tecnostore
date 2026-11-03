@@ -1,0 +1,42 @@
+﻿<article class="tarjeta">
+    @if (Descuento is int pct)
+    {
+        <span class="descuento">-@pct%</span>
+    }
+
+    <a href="/producto/@Producto.Id" class="foto">
+        @if (!string.IsNullOrWhiteSpace(ImagenUrl))
+        {
+            <img src="@ImagenUrl" alt="@Producto.Nombre" loading="lazy" />
+        }
+        else
+        {
+            <span class="sin-foto">📦</span>
+        }
+    </a>
+
+    <div class="info">
+        <small class="marca">@(Producto.Marca?.Nombre)</small>
+        <a href="/producto/@Producto.Id" class="nombre">@Producto.Nombre</a>
+        <div class="precios">
+            <strong>@PrecioFinal.Fmt()</strong>
+            @if (Descuento is not null)
+            {
+                <s>@Producto.PrecioLista.Fmt()</s>
+            }
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired] public ProductoDto Producto { get; set; } = default!;
+    [Parameter] public string? ImagenUrl { get; set; }
+
+    private decimal PrecioFinal =>
+        Producto.PrecioOferta is decimal o && o < Producto.PrecioLista ? o : Producto.PrecioLista;
+
+    private int? Descuento =>
+        PrecioFinal < Producto.PrecioLista
+            ? (int)Math.Round((1 - PrecioFinal / Producto.PrecioLista) * 100)
+            : null;
+}
